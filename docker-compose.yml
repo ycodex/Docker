@@ -11,7 +11,7 @@ services:
             - app-network
     
     truyum-app:
-        image: ycodex/truyum-app:0.2
+        image: ycodex/truyum-app:0.3
         ports: 
             - "8080-8089:8080"
         restart: always
