@@ -1,0 +1,42 @@
+version: '3.7'
+services: 
+   
+    eureka:
+        image: ycodex/eureka:0.1
+        ports: 
+            - "8761:8761"
+        restart: always
+       
+        networks:
+            - app-network
+    
+    truyum-app:
+        image: ycodex/truyum-app:0.1
+        ports: 
+            - "8080-8089:8080"
+        restart: always
+        environment:
+            EUREKA_HOST: eureka
+                
+        depends_on:
+            - eureka
+        networks:
+            - app-network
+    zull-gateway:
+        image: ycodex/zull-gateway:0.1
+        ports: 
+            - "8083:8083"
+        restart: always
+        environment:
+            EUREKA_HOST: eureka
+                
+        depends_on:
+            - eureka
+        networks:
+            - app-network
+ 
+  
+ 
+# Networks to be created to facilitate communication between containers
+networks:
+    app-network:  
