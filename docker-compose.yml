@@ -22,7 +22,18 @@ services:
             - eureka
         networks:
             - app-network
-   
+    zull-gateway:
+        image: ycodex/zull-gateway:0.1
+        ports: 
+            - "8083-8083:8083"
+        restart: always
+        environment:
+            EUREKA_HOST: eureka
+                
+        depends_on:
+            - eureka
+        networks:
+            - app-network
  
   
  
